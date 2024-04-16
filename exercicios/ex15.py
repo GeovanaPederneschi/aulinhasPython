@@ -1,4 +1,4 @@
-deposito_inical = float(input("Digite o depósito inicial da poupança?: "))
+deposito_inical = float(input("Digite o depósito inicial da poupança: "))
 taxa_juros = float(input("Digite a taxa de juros da poupança?: "))
 
 taxa_juros = taxa_juros/100
