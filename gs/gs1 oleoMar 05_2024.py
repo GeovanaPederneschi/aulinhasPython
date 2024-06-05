@@ -10,8 +10,13 @@ for numC in range(numLinhaColuna):
     linha = 0
     Linha = []
     for numL in range(numLinhaColuna):
-        entrada = str(input(f"Digite a entrada da posição {coluna},{linha}: "))
         linha += 1
+        while True:
+            entrada = str(input(f"Digite a entrada da posição {coluna},{linha}: "))
+            if entrada != 'A' and entrada != 'O':
+                print("Entrada Incorreta!   Digite Apenas (A) para água e (O) para óleo")
+            else:
+                break
         Linha.append(entrada)
     Coluna.append(Linha)
 
@@ -22,23 +27,45 @@ linhAnalisada = 0
 
 for col in Coluna:
     colAnalisada += 1
+    linhAnalisada = 0
     for l in col:
         linhAnalisada += 1
-        if l == '0':
+        if l == 'O':
             isOleo = True
             break
         if colAnalisada == len(Coluna) and linhAnalisada == len(Coluna):
-            print("foi")
             break
+    if isOleo:
+        break
 
-for iC in range(len(Coluna)):
+#print(f"colAnalisada: {colAnalisada}")
+#print(f"linhAnalisada: {linhAnalisada}")
+#print(f"len(Coluna): {len(Coluna)}")
+
+print("                                     ")
+print("Matriz Analisada: ")
+
+for iC in range(colAnalisada):
     endI = ""
-    for iL in range(len(Coluna)):
-        if iL == len(Coluna):
-            endI = "\n"
-        print(f"{Coluna[iC][iL]}, ", end=endI)
+    virgula = ","
+    if iC == colAnalisada - 1:
+        for iL in range(linhAnalisada):
+            if iL == len(Coluna) - 1:
+                endI = "\n"
+                virgula = ""
+            print(f"{Coluna[iC][iL]}{virgula} ", end=endI)
+    else:
+        for iL in range(len(Coluna)):
+            if iL == len(Coluna)-1:
+                endI = "\n"
+                virgula =""
 
-# print(Coluna[0:2])
-# print(Coluna[0:1])
-# print(Coluna[1:2])
-# print(Coluna)
+            print(f"{Coluna[iC][iL]}{virgula} ", end=endI)
+
+print("             ")
+print("             ")
+
+if isOleo:
+    print(f"Macha de Óleo Dectada!")
+else:
+    print(f"Mancha de Óleo Não Dectada!")
