@@ -1,3 +1,5 @@
+# link da porcaria do video
+
 numLinhaColuna = int(input("Digite o número de linhas/colunas da matriz quadrada que representa a área do mar: "))
 Coluna = []
 
