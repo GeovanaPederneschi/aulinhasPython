@@ -3,18 +3,12 @@
 numLinhaColuna = int(input("Digite o número de linhas/colunas da matriz quadrada que representa a área do mar: "))
 Coluna = []
 
-coluna = 0
-linha = 0
-
-print("(A) para água e (O) para óleo")
+print(f"\n(A) para água e (O) para óleo\n")
 for numC in range(numLinhaColuna):
-    coluna += 1
-    linha = 0
     Linha = []
     for numL in range(numLinhaColuna):
-        linha += 1
         while True:
-            entrada = str(input(f"Digite a entrada da posição {coluna},{linha}: "))
+            entrada = str(input(f"Digite a entrada da posição {numC+1},{numL+1}: "))
             if entrada != 'A' and entrada != 'O':
                 print("Entrada Incorreta!   Digite Apenas (A) para água e (O) para óleo")
             else:
@@ -35,17 +29,10 @@ for col in Coluna:
         if l == 'O':
             isOleo = True
             break
-        if colAnalisada == len(Coluna) and linhAnalisada == len(Coluna):
-            break
     if isOleo:
         break
 
-#print(f"colAnalisada: {colAnalisada}")
-#print(f"linhAnalisada: {linhAnalisada}")
-#print(f"len(Coluna): {len(Coluna)}")
-
-print("                                     ")
-print("Matriz Analisada: ")
+print(f"\nMatriz Analisada: ")
 
 for iC in range(colAnalisada):
     endI = ""
@@ -64,8 +51,12 @@ for iC in range(colAnalisada):
 
             print(f"{Coluna[iC][iL]}{virgula} ", end=endI)
 
-print("             ")
-print("             ")
+
+totalElementos = len(Coluna)*len(Coluna)
+elementosAnalisados = (colAnalisada-1)*numLinhaColuna+linhAnalisada
+porcentagemAnalisada = (elementosAnalisados / totalElementos) * 100
+
+print(f"\nMatriz Analisada: {porcentagemAnalisada:.2f}%\n\n")
 
 if isOleo:
     print(f"Macha de Óleo Dectada!")
