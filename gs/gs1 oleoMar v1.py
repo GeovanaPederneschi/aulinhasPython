@@ -1,59 +1,62 @@
 # link da porcaria do video
 
 numLinhaColuna = int(input("Digite o número de linhas/colunas da matriz quadrada que representa a área do mar: "))
-Coluna = []
+Linha = []
 
 print(f"\n(A) para água e (O) para óleo\n")
-for numC in range(numLinhaColuna):
-    Linha = []
-    for numL in range(numLinhaColuna):
+for numL in range(numLinhaColuna):
+    Coluna = []
+    for numC in range(numLinhaColuna):
         while True:
             entrada = str(input(f"Digite a entrada da posição {numC+1},{numL+1}: "))
             if entrada != 'A' and entrada != 'O':
                 print("Entrada Incorreta!   Digite Apenas (A) para água e (O) para óleo")
             else:
                 break
-        Linha.append(entrada)
-    Coluna.append(Linha)
+        Coluna.append(entrada)
+    Linha.append(Coluna)
 
 isOleo = False
 
 colAnalisada = 0
 linhAnalisada = 0
 
-for col in Coluna:
-    colAnalisada += 1
-    linhAnalisada = 0
-    for l in col:
-        linhAnalisada += 1
-        if l == 'O':
+for lin in Linha:
+    linhAnalisada += 1
+    colAnalisada = 0
+    for c in lin:
+        colAnalisada += 1
+        if c == 'O':
             isOleo = True
             break
     if isOleo:
         break
 
+print(linhAnalisada)
+print(colAnalisada)
+
 print(f"\nMatriz Analisada: ")
 
-for iC in range(colAnalisada):
+for iL in range(linhAnalisada):
     endI = ""
     virgula = ","
-    if iC == colAnalisada - 1:
-        for iL in range(linhAnalisada):
-            if iL == len(Coluna) - 1:
+    if iL == linhAnalisada - 1:
+        for iC in range(colAnalisada):
+            if iC == len(Linha) - 1:
                 endI = "\n"
                 virgula = ""
-            print(f"{Coluna[iC][iL]}{virgula} ", end=endI)
+            print(f"{Linha[iL][iC]}{virgula} ", end=endI)
     else:
-        for iL in range(len(Coluna)):
-            if iL == len(Coluna)-1:
+        for iC in range(len(Linha)):
+            if iC == len(Linha)-1:
                 endI = "\n"
                 virgula =""
 
-            print(f"{Coluna[iC][iL]}{virgula} ", end=endI)
+            print(f"{Linha[iL][iC]}{virgula} ", end=endI)
 
 
-totalElementos = len(Coluna)*len(Coluna)
-elementosAnalisados = (colAnalisada-1)*numLinhaColuna+linhAnalisada
+totalElementos = len(Linha) * len(Linha)
+elementosAnalisados = (linhAnalisada-1)*numLinhaColuna+colAnalisada
 porcentagemAnalisada = (elementosAnalisados / totalElementos) * 100
 
 print(f"\nMatriz Analisada: {porcentagemAnalisada:.2f}%\n\n")
